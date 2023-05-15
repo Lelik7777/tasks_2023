@@ -280,7 +280,9 @@ const doubleArray = Array.from(someArray, (num) => num * 2);
 console.log(someArray);
 console.log(doubleArray);
 
-//Map
+//? /////////////////////////////////////////////////////////////////////////////////////
+
+//? Map
 const map = new Map();
 map.set("str", "hello");
 map.set(1, 1);
@@ -510,7 +512,9 @@ function topSalary(salaries) {
 }
 console.log(topSalary(salaries00));
 
-//DATE
+//? //////////////////////////////////////////////////////////////////////////////////////
+
+//? DATE
 console.log(new Date("2022-01-25"));
 console.log(new Date(2011, 0, 1));
 console.log(new Date().getTime());
@@ -663,7 +667,9 @@ console.log(formatDate(new Date(new Date() - 30 * 1000)));
 console.log(formatDate(new Date(new Date() - 5 * 60 * 1000))); // "5 мин. назад"
 console.log(formatDate(new Date(new Date() - 86400 * 1000)));
 
-//! JSON
+//? /////////////////////////////////////////////////////////////////////////////////////
+
+//? JSON
 
 //ручной вариант преобразования объекта в примитив( строку)
 const user000 = {
@@ -682,7 +688,7 @@ let student = {
   isAdmin: false,
   courses: ["html", "css", "js"],
   wife: null,
-  //методы JSON не видит methods,undefined,Symbols
+  //! методы JSON не видит methods,undefined,Symbols
   sum(a, b) {
     return a + b;
   },
@@ -692,7 +698,7 @@ let student = {
 const stringStudent = JSON.stringify(student);
 console.log(stringStudent);
 console.log(JSON.stringify("hello world"));
-//получается,что ф-цию преобразовать в JSON нельзя
+//! получается,что ф-цию преобразовать в JSON нельзя
 function sum(a, b) {
   return a + b;
 }
@@ -702,14 +708,14 @@ console.log(JSON.stringify(null));
 const value = null;
 console.log(JSON.stringify(value));
 console.log(JSON.stringify([4, 5, 6, 7]));
-//мы можем настраивать свойства,которые хотим сериализировать
+//! мы можем настраивать свойства,которые хотим сериализировать
 let room = {
   number: 23,
   windows: {
     one: 1,
     two: 2,
   },
-  //благодаря этому методу мы можем настроить ссылочный объект так, чтобы в JSON попадали только нужные нам данные. В данном случае, попадет только свойство windows,а number нет.
+  //! благодаря этому методу мы можем настроить ссылочный объект так, чтобы в JSON попадали только нужные нам данные. В данном случае, попадет только свойство windows,а number нет.
   toJSON() {
     return this.windows;
   },
@@ -722,9 +728,10 @@ let meetup = {
 };
 //массив в качестве replacer для нужных свойств
 //console.log(JSON.stringify(meetup,['title','participants','place','number']));
+
 //циклическая ссылка,которая ломает процесс форматирования
 room.occupiedBy = meetup; // room ссылается на meetup
-// функция в качестве replacer,в которой указываю свойства,которые не нужны в JSON
+//! функция в качестве replacer,в которой указываю свойства,которые не нужны в JSON
 console.log(
   JSON.stringify(
     meetup,
