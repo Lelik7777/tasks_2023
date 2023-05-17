@@ -184,13 +184,13 @@ function f() {
   return this.a;
 }
 
-var g = f.bind({a: 'azerty'});
+var g = f.bind({ a: "azerty" });
 console.log(g()); // azerty
 
-var h = g.bind({a: 'yoo'}); // bind only works once!
+var h = g.bind({ a: "yoo" }); // bind only works once!
 console.log(h()); // azerty
 
-var o = {a: 37, f: f, g: g, h: h};
+var o = { a: 37, f: f, g: g, h: h };
 console.log(o.a, o.f(), o.g(), o.h()); // 37,37, azerty, azerty
 
 //! IIFE
@@ -270,17 +270,17 @@ for (let i = 0; i < 5; i++) {
 //   font-size: 1.2em;
 // }
 function makeSizer(size) {
-  return function() {
-    document.body.style.fontSize = size + 'px';
+  return function () {
+    document.body.style.fontSize = size + "px";
   };
-};
+}
 
 var size12 = makeSizer(12);
 var size14 = makeSizer(14);
 var size16 = makeSizer(16);
-document.getElementById('size-12').onclick = size12;
-document.getElementById('size-14').onclick = size14;
-document.getElementById('size-16').onclick = size16;
+// document.getElementById("size-12").onclick = size12;
+// document.getElementById("size-14").onclick = size14;
+// document.getElementById("size-16").onclick = size16;
 
 // Copy to Clipboard
 // <a href="#" id="size-12">12</a>
@@ -289,3 +289,44 @@ document.getElementById('size-16').onclick = size16;
 
 // создание приватных методов с помощью замыкания
 
+function makeCounter() {
+  let counter = 0;
+  function changeCounter(value) {
+    counter += value;
+  }
+  return {
+    increment() {
+      changeCounter(1);
+    },
+    decrement() {
+      changeCounter(-1);
+    },
+    getCounter() {
+      return counter;
+    },
+  };
+}
+const counter1 = makeCounter();
+const counter2 = makeCounter();
+counter1.increment();
+counter1.increment();
+console.log(counter1.getCounter());
+console.log(counter2.getCounter());
+
+//example clouser in loop with error
+
+const showText = (text) => (document.getElementById("help").textContent = text);
+
+const setupHelp = () => {
+  const messages = [
+    { id: "email", message: "enter email address" },
+    { id: "name", message: "enter your name" },
+    { id: "age", message: "enter your age" },
+  ];
+  messages.forEach((message) => {
+    document.getElementById(message.id).addEventListener("focus", () => {
+      showText(message.message);
+    });
+  });
+};
+setupHelp();
