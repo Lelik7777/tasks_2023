@@ -330,3 +330,21 @@ const setupHelp = () => {
   });
 };
 setupHelp();
+
+//! RECURSION
+
+// функция,которая возводит число в степень n
+const pow = (number, degree) => {
+  let result = 1;
+  for (let i = 0; i < degree; i++) {
+    result *= number;
+  }
+  return result;
+};
+
+const powRecursive = (number, degree) =>
+  (degree === 1) ? number : (number * powRecursive(number, degree - 1));
+
+console.log(pow(2, 3));
+console.log(powRecursive(2, 4));
+
