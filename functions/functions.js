@@ -164,6 +164,22 @@ const lemonPie2 = { type: "lemon", radius: 9 };
 cookPie2.call(lemonPie2, 14, false);
 console.log(lemonPie2);
 
+//todo example encheritance  constructor functions
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+  if (price < 0) {
+    throw RangeError("price must be more than zero");
+  }
+}
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = "food";
+}
+const toys = new Product("toys", 3);
+const cheese=new Food('feta',4);
+console.log('cheese', cheese);
+
 //! BIND()
 
 function cookPie3(radius, slice) {
