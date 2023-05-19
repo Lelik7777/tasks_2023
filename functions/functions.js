@@ -208,6 +208,21 @@ const lemonPieNew = {
 console.log(lemonPieNew);
 lemonPieNew.cook();
 
+//todo example IIFE and call()
+
+const animals = [
+  { type: "cat", name: "tom" },
+  { type: "dog", name: "polcan" },
+];
+for (let i = 0; i < animals.length; i++) {
+  (function (i) {
+    this.print = function () {
+      console.log(`#${i} ${this.type}:${this.name}`);
+    };
+    this.print(i);
+  }).call(animals[i], i);
+}
+
 //!  LEXICAL SCOPE
 //данный пример явно показывает,что ф-ция showObj обладает статической областью видимостью(ее scope формируется в момент создания,объявления ф-ции,а не в момент вызова),а this - определяется динамически, в момент вызова, т.е. реализует динамический scope
 const obj = { name: "bob" };
@@ -343,8 +358,7 @@ const pow = (number, degree) => {
 };
 
 const powRecursive = (number, degree) =>
-  (degree === 1) ? number : (number * powRecursive(number, degree - 1));
+  degree === 1 ? number : number * powRecursive(number, degree - 1);
 
 console.log(pow(2, 3));
 console.log(powRecursive(2, 4));
-
