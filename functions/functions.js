@@ -177,8 +177,8 @@ function Food(name, price) {
   this.category = "food";
 }
 const toys = new Product("toys", 3);
-const cheese=new Food('feta',4);
-console.log('cheese', cheese);
+const cheese = new Food("feta", 4);
+console.log("cheese", cheese);
 
 //! BIND()
 
@@ -374,7 +374,132 @@ const pow = (number, degree) => {
 };
 
 const powRecursive = (number, degree) =>
-  degree === 1 ? number : number * powRecursive(number, degree - 1);
-
+  degree > 1 ? number * powRecursive(number, degree - 1) : number;
 console.log(pow(2, 3));
 console.log(powRecursive(2, 4));
+
+//обход объекта посредством рекурсии
+let company = {
+  // тот же самый объект, сжатый для краткости
+  sales: [
+    { name: "John", salary: 1000 },
+    { name: "Alice", salary: 600 },
+  ],
+  development: {
+    sites: [
+      { name: "Peter", salary: 2000 },
+      { name: "Alex", salary: 1800 },
+    ],
+    internals: [{ name: "Jack", salary: 1300 }],
+  },
+};
+const getSalary = (obj) => {
+  if (Array.isArray(obj)) {
+    return obj.reduce((acc, cur) => acc + cur.salary, 0);
+  } else {
+    let sum = 0;
+    for (let elem of Object.values(obj)) {
+      sum += getSalary(elem);
+    }
+    return sum;
+  }
+};
+console.log(getSalary(company));
+
+//1.Вычислить сумму чисел до данного
+
+// Напишите функцию sumTo(n), которая вычисляет сумму чисел 1 + 2 + ... + n.
+const sumTo = (number) => {
+  let sum = 0;
+  for (let i = 0; i <= number; i++) sum += i;
+  return sum;
+};
+const sumToRecursive = (number) =>
+  number > 1 ? number + sumToRecursive(number - 1) : number;
+console.log(sumTo(100));
+console.log(sumToRecursive(100));
+
+//2. Вычислить факториал
+
+// Факториал натурального числа – это число, умноженное на "себя минус один", затем на "себя минус два", и так далее до 1. Факториал n обозначается как n!
+const fuctorial = (number) => (number > 1 ? number * fuctorial(number - 1) : 1);
+console.log(fuctorial(5));
+
+//3. Числа Фибоначчи
+
+// Последовательность чисел Фибоначчи определяется формулой Fn = Fn-1 + Fn-2. То есть, следующее число получается как сумма двух предыдущих.
+
+// Первые два числа равны 1, затем 2(1+1), затем 3(1+2), 5(2+3) и так далее: 1, 1, 2, 3, 5, 8, 13, 21....
+
+// Числа Фибоначчи тесно связаны с золотым сечением и множеством природных явлений вокруг нас.
+
+// Напишите функцию fib(n) которая возвращает n-е число Фибоначчи.
+const fib = (number) =>
+  number < 2 ? 0 : number == 2 ? 1 : fib(number - 1) + fib(number - 2);
+const nthFibo = (number) => {
+  let [prev, cur] = [0, 1];
+  for (let i = 1; i < number; i++) {
+    [prev, cur] = [cur, prev + cur];
+  }
+  return prev;
+};
+//console.log(fibCicle(4));
+console.log(fib(3));
+console.log(nthFibo(4));
+
+//4. Вывод односвязного списка
+
+// Допустим, у нас есть односвязный список (как описано в главе Рекурсия и стек):
+
+const list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null,
+      },
+    },
+  },
+};
+// Напишите функцию printList(list), которая выводит элементы списка по одному.
+
+const printList = (list) => {
+  let temp = list;
+  while (temp) {
+    console.log(temp.value);
+    temp = temp.next;
+  }
+};
+const printList2 = (list) => {
+  console.log(list.value);
+  if (list.next) {
+    printList2(list.next);
+  }
+};
+printList(list);
+printList2(list);
+
+//.5 Вывод односвязного списка в обратном порядке
+// Выведите односвязный список из предыдущего задания Вывод односвязного списка в обратном порядке.
+
+// Сделайте два решения: с использованием цикла и через рекурсию.
+
+const reversePrintList = (list) => {
+  if (list.next) reversePrintList(list.next);
+  console.log(list.value);
+};
+reversePrintList(list);
+
+const reversePrintList2 = (list) => {
+  const arr = [];
+  let temp = list;
+  while (temp) {
+    arr.push(temp.value);
+    temp = temp.next;
+  }
+  arr.reverse().forEach((value) => console.log(value));
+};
+reversePrintList2(list);
