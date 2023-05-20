@@ -362,6 +362,122 @@ const setupHelp = () => {
 };
 setupHelp();
 
+//этот пример демонстрирует тот факт,что ф-ция получает актуальные,последние значения переменной.
+let customName = "John";
+
+function sayHi() {
+  console.log("Hi, " + customName);
+}
+
+customName = "Pete"; // (*)
+sayHi();
+//! нельзя объявлять,поскольку уже есть переменная с таким именем в function2.js
+//const global = "global";
+
+//1.
+function Counter() {
+  //let count = 0;
+  this.count = 0;
+
+  this.up = function () {
+    return ++this.count;
+  };
+  this.down = function () {
+    return --this.count;
+  };
+}
+
+let counter = new Counter();
+console.log(counter.up());
+console.log(counter.up());
+
+//2.Сумма с помощью замыканий
+
+// Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b.
+
+// Да, именно таким образом, используя двойные круглые скобки (не опечатка).
+
+// Например:
+
+// sum(1)(2) = 3
+// sum(5)(-1) = 4
+function getSum(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+console.log(getSum(5)(-2));
+
+//3. Фильтрация с помощью функции
+важность: 5;
+// У нас есть встроенный метод arr.filter(f) для массивов. Он фильтрует все элементы с помощью функции f. Если она возвращает true, то элемент добавится в возвращаемый массив.
+
+// Сделайте набор «готовых к употреблению» фильтров:
+
+// inBetween(a, b) – между a и b (включительно).
+// inArray([...]) – находится в данном массиве.
+// Они должны использоваться таким образом:
+
+// arr.filter(inBetween(3,6)) – выбирает только значения между 3 и 6 (включительно).
+// arr.filter(inArray([1,2,3])) – выбирает только элементы, совпадающие с одним из элементов массива
+let arr000 = [1, 2, 3, 4, 5, 6, 7, 8];
+function inBetween(a, b) {
+  return function (x) {
+    return x >= a && x <= b;
+  };
+}
+function inArray(arr) {
+  return function (x) {
+    return arr.includes(x);
+  };
+}
+console.log(arr000.filter(inBetween(2, 6)));
+console.log(arr000.filter(inArray([1, 5])));
+
+//4. Сортировать по полю
+let users = [
+  { name: "John", age: 20, surname: "Johnson" },
+  { name: "Pete", age: 18, surname: "Peterson" },
+  { name: "Ann", age: 19, surname: "Hathaway" },
+];
+//Обычный способ был бы таким:
+
+// по имени (Ann, John, Pete)
+//users.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+// по возрасту (Pete, Ann, John)
+//users.sort((a, b) => (a.age > b.age ? 1 : -1));
+//Можем ли мы сделать его короче, например вот таким?
+
+function byField(fild) {
+  return function (a, b) {
+    return a[fild] > b[fild] ? 1 : -1;
+  };
+}
+users.sort(byField("name"));
+console.log(users);
+users.sort(byField("age"));
+
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i < 10) {
+    let shooter = function (i) {
+      // функция shooter
+      console.log(i); // должна выводить порядковый номер
+    };
+    shooters.push(shooter);
+    i++;
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+army[0](); // у 0-го стрелка будет номер 10
+army[5](); // и у 5-го стрелка тоже будет номер 10
 //! RECURSION
 
 // функция,которая возводит число в степень n
@@ -503,3 +619,19 @@ const reversePrintList2 = (list) => {
   arr.reverse().forEach((value) => console.log(value));
 };
 reversePrintList2(list);
+
+//Установка и уменьшение значения счётчика
+
+// Измените код makeCounter() так, чтобы счётчик мог уменьшать и устанавливать значение:
+
+// counter() должен возвращать следующее значение (как и раньше).
+// counter.set(value) должен устанавливать счётчику значение value.
+// counter.decrease() должен уменьшать значение счётчика на 1.
+
+const makeCounter0=()=>{
+  let count=0;
+  function counter() {
+    return count++;
+  }
+  return counter;
+}
