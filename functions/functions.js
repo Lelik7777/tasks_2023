@@ -628,10 +628,95 @@ reversePrintList2(list);
 // counter.set(value) должен устанавливать счётчику значение value.
 // counter.decrease() должен уменьшать значение счётчика на 1.
 
-const makeCounter0=()=>{
-  let count=0;
+const makeCounter0 = () => {
+  let count = 0;
   function counter() {
-    return count++;
+    return ++count;
   }
+  counter.set = (value) => (count = value);
+  counter.decrease = () => --count;
   return counter;
+};
+const counter00 = makeCounter0();
+console.log(counter00.set(10));
+console.log(counter00());
+console.log(counter00());
+console.log(counter00());
+console.log(counter00.decrease());
+function Counter11() {
+  this.count = 0;
+  this.up = function () {
+    return ++this.count;
+  };
+  this.down = function () {
+    return --this.count;
+  };
 }
+const counter11 = new Counter11();
+console.log(counter11.up());
+console.log(counter11.down());
+const sumNew = (a) => {
+  let innerSum = a;
+  function fun(b) {
+    innerSum += b;
+    return fun;
+  }
+  fun.toString = () => innerSum;
+  fun.getRes = () => innerSum;
+  return fun;
+};
+console.log(sumNew(2)(4)(4).getRes());
+
+//! SETINTERVAL and SETTIMEOUT
+
+let timeId = setInterval(() => console.log("tick from setInterval"), 5000);
+setTimeout(() => clearInterval(timeId), 11000);
+
+//вариант интервального вызова,но с использованием вложенных setTimeout()
+let count = 0;
+let timerId1 = setTimeout(function tick() {
+  console.log("tick");
+  count++;
+  timerId1 = setTimeout(tick, 2000);
+  if (count === 10) clearTimeout(timerId1);
+}, 2000);
+
+setTimeout(function tick() {
+  console.log("tick from setTimeout");
+}, 3000);
+
+//1. Вывод каждую секунду
+
+// Напишите функцию printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
+
+// Сделайте два варианта решения.
+
+// Используя setInterval.
+// Используя рекурсивный setTimeout.
+function printNumbers(from, to) {
+  let timeId = setInterval(() => {
+    console.log(from);
+    if (from === to) clearInterval(timeId);
+    from++;
+  }, 1000);
+}
+//printNumbers(10,30);
+//здесь присутствует задержка в одну секунду,чтобы ее избежать,то ф-цию tick()нужно вынести отдельно и запустить до setTimeout()
+function printNumbers2(from, to) {
+  // let timeId = setTimeout(function tick() {
+  //   console.log(from);
+  //   timeId = setTimeout(tick, 1000);
+  //   if (from === to) clearTimeout(timeId);
+  //   from++;
+  // }, 1000);
+  let timerId;
+  function tick() {
+    console.log(from);
+    timerId = setTimeout(tick, 1000);
+    if (to === from) clearTimeout(timerId);
+    from++;
+
+  }
+  tick();
+}
+printNumbers2(5, 20);
