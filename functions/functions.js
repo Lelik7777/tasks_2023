@@ -114,7 +114,10 @@ function callsCounter(fun) {
     return fun(...arg);
   };
 }
-const sum = (a, b) => console.log(a + b);
+let sum = (a, b) => console.log(a + b);
+sum = callsCounter(sum);
+sum(5, 9);
+console.log(sum.counter);
 const countSum = callsCounter(sum);
 countSum(2, 3);
 countSum(5, 6);
@@ -715,8 +718,114 @@ function printNumbers2(from, to) {
     timerId = setTimeout(tick, 1000);
     if (to === from) clearTimeout(timerId);
     from++;
-
   }
   tick();
 }
-printNumbers2(5, 20);
+printNumbers2(5, 8);
+
+//! ДЕКОРАТОРЫ
+
+//todo example with cache
+
+function doComplex(value) {
+  console.log(`do with ${value}`);
+  return value * 3;
+}
+
+const cache = (fun) => {
+  const cache = new Map();
+  return function (value) {
+    if (cache.has(fun)) return cache.get(fun);
+    const res = fun(value);
+    cache.set(fun, res);
+    return res;
+  };
+};
+const cachedValue = cache(doComplex);
+console.log(cachedValue(3));
+console.log(cachedValue(3));
+const cachedValue1 = cache(doComplex);
+console.log(cachedValue1(5));
+console.log(cachedValue1(5));
+
+//1. Декоратор-шпион
+
+// Создайте декоратор spy(func), который должен возвращать обёртку, которая сохраняет все вызовы функции в своём свойстве calls.
+
+// Каждый вызов должен сохраняться как массив аргументов.
+function work(a, b) {
+  console.log(a + b); // произвольная функция или метод
+}
+// в этом варианте я добавляю новое свойство для ф-ции,которая будет попадать в аргументы к spy
+const spy = (fun) => {
+  fun.calls = [];
+  return function (...args) {
+    console.log(fun.calls);
+    fun.calls.push(args);
+    console.log(fun.calls);
+    return fun(...args);
+  };
+};
+const workNew = spy(work);
+workNew(1, 3);
+console.log(work.calls);
+console.dir(work);
+// в этом же варианте я перепишу ф-цию work и превращу ее в ту ф-цию,которую возращает spy. Здесь осуществляется привязка функции work к контексту ф-ции wrapper
+function spy2(fun) {
+  function wrapper(...args) {
+    wrapper.calls.push(args);
+    //именно здесь происходить привязка контекста ф-ции wrapper к ф-ции fun
+    return fun.call(this, ...args);
+  }
+  wrapper.calls = [];
+  return wrapper;
+}
+work = spy2(work);
+
+console.log(work.calls);
+
+//2. Задерживающий декоратор
+// Создайте декоратор delay(f, ms), который задерживает каждый вызов f на ms миллисекунд.
+function showRes(value) {
+  console.log(value);
+}
+function test(value) {
+  console.log(value);
+}
+function setDelay(fun, delay) {
+  return function (...args) {
+    setTimeout(fun, delay, ...args);
+  };
+}
+let fun10000 = setDelay(showRes, 10000);
+fun10000("test");
+//second variant можно не использовать rest operator,а псевдомассив arguments; специально используется стрелочная ф-ция,чтобы взять контекст ф-ции,которую возвращает setDelay2
+function setDelay2(fun, delay) {
+  return function () {
+    setTimeout(() => fun.apply(this, arguments), delay);
+  };
+}
+
+let fun5000 = setDelay2(test, 5000);
+fun5000("test2");
+
+//3. Декоратор debounce
+
+// Результатом декоратора debounce(f, ms) должна быть обёртка, которая передаёт вызов f не более одного раза в ms миллисекунд. Другими словами, когда мы вызываем debounce, это гарантирует, что все остальные вызовы будут игнорироваться в течение ms.
+
+function debounce(fun, delay) {
+  let isStop = false;
+  return function () {
+
+    if (isStop) return;
+    fun.apply(this, arguments);
+    isStop = true;
+    setTimeout(() => (isStop = true), delay);
+  };
+}
+let f0 = debounce(console.log, 2000);
+f0("hello");
+f0("world");
+setTimeout(() => f0(3), 100);
+setTimeout(() => f0(4), 1100);
+setTimeout(() => f0(5), 1500);
