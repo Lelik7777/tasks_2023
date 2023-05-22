@@ -760,9 +760,8 @@ function work(a, b) {
 const spy = (fun) => {
   fun.calls = [];
   return function (...args) {
-    console.log(fun.calls);
     fun.calls.push(args);
-    console.log(fun.calls);
+
     return fun(...args);
   };
 };
@@ -816,11 +815,10 @@ fun5000("test2");
 function debounce(fun, delay) {
   let isStop = false;
   return function () {
-
     if (isStop) return;
     fun.apply(this, arguments);
     isStop = true;
-    setTimeout(() => (isStop = true), delay);
+    setTimeout(() => (isStop = false), delay);
   };
 }
 let f0 = debounce(console.log, 2000);
@@ -829,3 +827,65 @@ f0("world");
 setTimeout(() => f0(3), 100);
 setTimeout(() => f0(4), 1100);
 setTimeout(() => f0(5), 1500);
+
+const debounce2 = (fun, delay) => {
+  let isTrue = false;
+  return function () {
+    if (isTrue) return;
+    fun.apply(this, arguments);
+    isTrue = !isTrue;
+    setTimeout(() => (isTrue = !isTrue), delay);
+  };
+};
+const ff = debounce2(console.log, 3000);
+ff("debounce");
+ff("debounce");
+
+console.log(10_000);
+
+//4. Тормозящий (throttling) декоратор
+// Создайте «тормозящий» декоратор throttle(f, ms), который возвращает обёртку, передавая вызов в f не более одного раза в ms миллисекунд. Те вызовы, которые попадают в период «торможения», игнорируются.
+
+// Отличие от debounce – если проигнорированный вызов является последним во время «задержки», то он выполняется в конце.
+function throttle(fun, delay) {
+  let isThrottled = false,
+    savedThis,
+    savedArguments;
+  function wrapper() {
+    if (isThrottled) {
+      savedArguments = arguments;
+      savedThis = this;
+      return;
+    }
+    fun.apply(this, arguments);
+    isThrottled = true;
+    setTimeout(function () {
+      isThrottled = false;
+      fun.apply(savedThis, savedArguments);
+      savedArguments = savedThis = null;
+    }, delay);
+  }
+
+  return wrapper;
+}
+function f(a) {
+  console.log(a);
+}
+
+// f1000 передаёт вызовы f максимум раз в 1000 мс
+let f1000 = throttle(f, 1000);
+
+f1000(1); // показывает 1
+f1000(2); // (ограничение, 1000 мс ещё нет)
+f1000(3); // (ограничение, 1000 мс ещё нет)
+
+//!ПРИВЯЗКА КОНТЕКСТА К ФУНКЦИИ
+//здесь потеря контекста,поскольку в setTimeout this=window и это равносильно window.firstName
+let user = {
+  firstName: "Вася",
+  sayHi() {
+    console.log(`Привет, ${this.firstName}!`);
+  },
+};
+
+setTimeout(user.sayHi, 1000); // Привет, undefined!
