@@ -890,19 +890,21 @@ let user = {
 
 setTimeout(user.sayHi, 1000); // Привет, undefined!
 //1. вариант решения: сделать обертку
-setTimeout(()=>{user.sayHi()}, 1000);
+setTimeout(() => {
+  user.sayHi();
+}, 1000);
 //2. second variant - using bind()
-setTimeout(user.sayHi.bind(user),1000);
+setTimeout(user.sayHi.bind(user), 1000);
 
 //
 function askPassword(ok, fail) {
-  let password = prompt("Password?", '');
+  let password = prompt("Password?", "");
   if (password == "rockstar") ok();
   else fail();
 }
 
 let user1 = {
-  name: 'Вася',
+  name: "Вася",
 
   loginOk() {
     alert(`${this.name} logged in`);
@@ -911,23 +913,55 @@ let user1 = {
   loginFail() {
     alert(`${this.name} failed to log in`);
   },
-
 };
 
 //askPassword(user1.loginOk.bind(user1), user1.loginFail.bind(user1));
 
 function askPassword1(ok, fail) {
-  let password = prompt("Password?", '');
+  let password = prompt("Password?", "");
   if (password == "rockstar") ok();
   else fail();
 }
 
 let user2 = {
-  name: 'John',
+  name: "John",
 
   login(result) {
-    alert( this.name + (result ? ' logged in' : ' failed to log in') );
-  }
+    alert(this.name + (result ? " logged in" : " failed to log in"));
+  },
 };
 
-askPassword(user2.login.bind(user2,true),user2.login.bind(user2,false)); // ?
+//askPassword(user2.login.bind(user2,true),user2.login.bind(user2,false)); // ?
+
+//! ARROW FUNCTIONS
+
+let group = {
+  title: "Our Group",
+  students: ["John", "Pete", "Alice"],
+
+  showList() {
+    this.students.forEach(
+      (student) => console.log(this.title + ": " + student)
+      // function (student) {
+      //   console.log(this.title + ": " + student);
+      // }
+    );
+  },
+};
+
+group.showList();
+
+//! деструктурирование вызова ф-ции
+function getNums() {
+  return [1, 2, 3, 4, 5, 6, 7, 8, 9];
+}
+const [a, b, c, ...rest] = getNums();
+
+// можно использовать деструктуризацию одного объекта в другом
+const obj1 = { name: "bob", age: 33, isAdmin: true };
+const obj2 = {
+  ...obj1,
+  hobby: true,
+};
+console.log(obj2);
+

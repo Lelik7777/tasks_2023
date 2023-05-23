@@ -1,3 +1,35 @@
+//! SYMBOL()
+// Созданный символ уникален, но как быть, если он нужен в нескольких местах программы? Для решения этой проблемы существует глобальный реестр символов, он хранит символы по строковым ключам. При обращении по ключу всегда будет возвращаться один и тот же символ.
+
+// Работа с реестром символов организована с помощью двух методов:
+
+// Symbol.for(ключ) — возвращает символ, хранящийся по ключу. Если символа ещё не существует, он создаётся автоматически.
+// Symbol.keyFor(символ) — возвращает строковый ключ, который хранит переданный символ или undefined, если символ не хранится в реестре.
+
+const secondaryId = Symbol();
+
+const user11 = {
+  id: 193,
+  name: "Ольга",
+  [secondaryId]: "olga-1",
+};
+console.log(user11);
+//этот метод возвращает массив всех символьных свойств объекта
+console.log(Object.getOwnPropertySymbols(user11));
+
+console.log(Symbol.keyFor(secondaryId));
+// undefined
+
+const newSym = Symbol.for("registryKey");
+const newestSym = Symbol.for("registryKey");
+console.log(newSym === newestSym);
+// true
+
+user11[newSym] = "hello";
+console.log(Object.getOwnPropertySymbols(user11));
+console.log(Symbol.keyFor(newSym));
+// registryKey
+console.log(Symbol.keyFor(newestSym));
 
 //1.Создайте функцию truncate(str, maxlength), которая проверяет длину строки str и, если она превосходит maxlength, заменяет конец str на "…", так, чтобы её длина стала равна maxlength.
 function truncate(str, maxLength) {
@@ -302,6 +334,25 @@ for (let item of recipeMap.entries()) {
 recipeMap.forEach((item, key) => {
   console.log(item, key);
 });
+
+//Map -ссылка на один и тот же объект перепишет другую и останется последняя,хотя вызвать можно по обеим,но значение value будет последнего key
+const dataObject = { position: "left" };
+const sameObject = dataObject;
+
+console.log(dataObject === sameObject);
+// true
+
+const map1 = new Map();
+map.set(dataObject, "value for dataObject");
+map.set(sameObject, "value for sameObject");
+
+console.log(map1.size);
+// 1
+console.log(map1.get(dataObject));
+// value for sameObject
+
+console.log(map1.get(sameObject));
+// value for sameObject
 
 //Фильтрация уникальных элементов массивa
 //Допустим, у нас есть массив arr.
