@@ -127,7 +127,9 @@ for (let item of obj1) {
   console.log(item);
 }
 
-const map=new Map(Object.entries(obj1));
-console.log(map.get('from'));
-console.log(map.has('to'));
+const map = new Map(Object.entries(obj1));
+console.log(map.get("from"));
+console.log(map.has("to"));
 console.log(Object.entries(obj1));
+
+

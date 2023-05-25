@@ -965,3 +965,7 @@ const obj2 = {
 };
 console.log(obj2);
 
+//!КАРРИРОВАНИЕ
+
+const sumCaring = (a) => (b) => (c) => (d) => a + b + c + d;
+console.log(sumCaring(4)(4)(2)(5));
