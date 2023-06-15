@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+}
+.text {
+  border: 7px dotted #fff;
+  padding: 10px;
+  background-color: aqua;
+  background-clip: border-box;
+}
+.block-text {
+  outline: 2px solid blue;
+  outline-offset: 5px;
+  border: 1px solid red;
+}
+.text1 {
+  padding: 35px;
+  margin: 20px;
+  background-color: greenyellow;
+  outline: 2px solid #fff;
+  outline-offset: -15px;
+}
+.text2 {
+  background-color: blueviolet;
+  color: #fff;
+  padding: 10px;
+  //outline: 2px solid #fff;
+  // outline-offset: -5px;
+  border: 6px double #fff;
+  width: 50%;
+  margin: -5px auto 0;
+}
+.form__block{
+  background-color: greenyellow;
+  padding: 10px;
+}
+.form{
+  display: flex;
+  flex-flow: column;
+  width: 25%;
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+  gap: 20px;
+}
+#title span{
+margin: 10px;
+border-bottom: 2px solid #000;
+padding: 1px;
+}
+.block__icons{
+  background-color: black;
+  color: #fff;
+  & span, & img{
+    vertical-align: middle;
+  }
+}
