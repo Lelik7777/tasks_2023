@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.wrapper0 {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0 15%;
+  border-radius: 3px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+}
+.form-row > label {
+  flex: 1;
+}
+.form-row > input {
+  flex: 2;
+}
+
+.media-object {
+  background-color: cadetblue;
+  display: flex;
+}
+
+.media__icon {
+  font-size: 3rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  background-color: beige;
+  height: 100vh;
+}
+
+.wrapper > div {
+  padding: 10px;
+  width: 60%;
+  font-size: 4vw;
+  color: white;
+}
+
+.red {
+  background: orangered;
+}
+
+.green {
+  background: yellowgreen;
+}
+
+.blue {
+  background: steelblue;
+}/*# sourceMappingURL=style.css.map */
