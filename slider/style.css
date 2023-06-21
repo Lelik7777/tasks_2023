@@ -1,0 +1,81 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 100px;
+  width: 100px;
+}
+
+.item, .carousel, .card {
+  display: flex;
+}
+
+.carousel-wrapper {
+  width: 640px;
+  margin: 0 20px;
+  overflow: hidden;
+}
+
+.carousel {
+  position: relative;
+  left: -640px;
+}
+
+.card {
+  width: 200px;
+  height: 200px;
+  background: red;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  cursor: pointer;
+}
+
+.item:first-child .card {
+  background: LawnGreen;
+}
+
+.item:last-child .card {
+  background: LightSkyBlue;
+}
+
+.card.activated {
+  background: #ccc;
+}
+
+.item {
+  gap: 20px;
+}
+
+@keyframes move-right {
+  from {
+    left: -640px;
+  }
+  to {
+    left: -1280px;
+  }
+}
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 5s;
+}
+
+@keyframes move-left {
+  from {
+    left: -640px;
+  }
+  to {
+    left: 0px;
+  }
+}
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 5s;
+}
+
+.hidden {
+  display: none;
+}/*# sourceMappingURL=style.css.map */

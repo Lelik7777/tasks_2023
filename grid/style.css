@@ -25,6 +25,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(30px, 1fr);
+  justify-content: center;
 }
 .wrapper > * {
   border: 1px solid #fff;
@@ -100,4 +101,39 @@ body {
   background-color: red;
   height: 50px;
   flex-grow: 1;
+}
+
+.button_left {
+  grid-area: button-left;
+  max-width: 55px;
+}
+
+.button_right {
+  grid-area: button-right;
+  max-width: 55px;
+}
+
+.block {
+  grid-area: block;
+}
+.block img {
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 10% 1fr 10%;
+  grid-template-areas: "button-left block button-right";
+  grid-auto-rows: auto;
+  gap: 0 5%;
+  align-items: center;
+  justify-items: center;
+}
+@media (max-width: 640px) {
+  .container {
+    grid-template-areas: "block block" "button-left button-right";
+    grid-template-columns: 1fr 1fr;
+  }
 }/*# sourceMappingURL=style.css.map */
