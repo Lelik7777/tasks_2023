@@ -8,7 +8,7 @@ const createCardTemplate = () => {
   const card = document.createElement("div");
   card.classList.add("card");
   return card;
-}
+};
 
 const moveLeft = () => {
   CAROUSEL.classList.add("transition-left");
@@ -46,4 +46,8 @@ CAROUSEL.addEventListener("animationend", (animationEvent) => {
 
   BTN_LEFT.addEventListener("click", moveLeft);
   BTN_RIGHT.addEventListener("click", moveRight);
-})
+});
+
+const card=document.querySelector(".card");
+let computedStyle=getComputedStyle(card);
+console.log(computedStyle.width);
