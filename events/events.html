@@ -10,5 +10,45 @@
   <body>
     <button class="button-1">click me</button>
     <p class="text-1">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis delectus cupiditate exercitationem! Doloremque aliquid soluta sint pariatur perferendis voluptate vitae ea accusamus sed incidunt fuga, non magnam numquam voluptas perspiciatis.</p>
+    <div class="menu">
+      <button data-action="save">Сохранить</button>
+      <button data-action="load">Загрузить</button>
+      <button data-action="search">Поиск</button>
+    </div>
+    <button data-toggle-id="subscribe-mail">
+      Показать форму подписки
+    </button>
+
+    <form id="subscribe-mail" hidden>
+      Ваша почта: <input type="email">
+    </form>
+<br>
+    Счётчик: <input type="button" value="1" data-counter>
+Ещё счётчик: <input type="button" value="2" data-counter>
+<a class="link" href="#">google</a>
+<a href="/" onclick="return false">Нажми здесь</a>
+<br>
+<input class="input" value="Фокус работает" onfocus="this.value=''">
+
+<p><img id="largeImg" src="https://en.js.cx/gallery/img1-lg.jpg" alt="Large image"></p>
+
+<ul id="thumbs" style="display: flex;">
+  <!-- браузер показывает небольшую встроенную подсказку из атрибута "title" при наведении курсора на текст -->
+  <li>
+    <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
+  </li>
+  <li>
+    <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
+  </li>
+  <li>
+    <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
+  </li>
+  <li>
+    <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
+  </li>
+  <li>
+    <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
+  </li>
+</ul>
   </body>
 </html>
