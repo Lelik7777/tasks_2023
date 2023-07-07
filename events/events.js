@@ -3,7 +3,7 @@ console.log("hello from events.js");
 document.querySelector(".button-1").addEventListener("click", function () {
   document.querySelector(".text-1").setAttribute("hidden", true);
   this.setAttribute("hidden", true);
-});
+} );
 //three buttons
 class Menu {
   constructor(elem) {

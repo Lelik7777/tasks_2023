@@ -9,7 +9,9 @@
   width: 100px;
 }
 
-.item, .carousel, .card {
+.item,
+.carousel,
+.card {
   display: flex;
 }
 
@@ -78,4 +80,27 @@
 
 .hidden {
   display: none;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
+
+.images {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.images img {
+  position: absolute;
+  top: 50%;
+  margin-top: 20px;
+  opacity: 0;
+  height: 270px;
+  transition: opacity 1s;
+}
+.images img.showed {
+  opacity: 1;
+}
+.images__buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+}
