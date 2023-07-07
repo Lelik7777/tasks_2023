@@ -52,6 +52,7 @@ const card = document.querySelector(".card");
 let computedStyle = getComputedStyle(card);
 console.log(computedStyle.width);
 
+//? implementation slider via opacity
 const images = document.querySelectorAll(".images img");
 let i = 0;
 const bntPrev = document.querySelector(".images__buttons .prev");
