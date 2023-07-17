@@ -72,6 +72,151 @@
           <label for="size_3">Large</label>
         </p>
       </fieldset>
+
     </form>
-  </body>
+    <select multiple id="simple" name="simple">
+      <option >Banana</option>
+      <option selected>Cherry</option>
+      <option>Lemon</option>
+    </select>
+    <select id="groups" name="groups">
+      <optgroup label="fruits">
+        <option>Banana</option>
+        <option selected>Cherry</option>
+        <option>Lemon</option>
+      </optgroup>
+      <optgroup label="vegetables">
+        <option>Carrot</option>
+        <option>Eggplant</option>
+        <option>Potato</option>
+      </optgroup>
+    </select>
+
+    <label for="myFruit">What's your favorite fruit?</label>
+<input type="text" name="myFruit" id="myFruit" list="mySuggestion">
+<datalist id="mySuggestion">
+  <option>Apple</option>
+  <option>Banana</option>
+  <option>Blackberry</option>
+  <option>Blueberry</option>
+  <option>Lemon</option>
+  <option>Lychee</option>
+  <option>Peach</option>
+  <option>Pear</option>
+</datalist>
+
+<form>
+  <fieldset>
+    <legend>Choose all the vegetables you like to eat</legend>
+    <ul>
+
+      <li>
+        <label for="cabbage">Cabbage</label>
+        <input type="checkbox" id="cabbage" name="vegetable" value="cabbage">
+      </li>
+      <li>
+        <label for="cauli">Cauliflower</label>
+        <input type="checkbox" id="cauli" name="vegetable" value="cauli">
+      </li>
+      <li>
+        <label for="broc">Broccoli</label>
+        <input type="checkbox" id="broc" name="vegetable" value="broc">
+      </li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <legend>What is your favorite meal?</legend>
+    <ul>
+
+      <li>
+        <label for="tacos">Tacos</label>
+        <input type="radio" id="tacos" name="meal" value="tacos">
+      </li>
+      <li>
+        <label for="bolognaise">Bolognaise</label>
+        <input type="radio" id="bolognaise" name="meal"  value="bolognaise">
+      </li>
+    </ul>
+  </fieldset>
+</form>
+
+<fieldset>
+  <legend>What is your favorite meal?</legend>
+  <ul>
+    <li>
+      <label for="soup">Soup</label>
+      <input type="radio" checked id="soup" name="meal" value="soup">
+    </li>
+    <li>
+      <label for="curry">Curry</label>
+      <input type="radio" id="curry" name="meal" value="curry">
+    </li>
+    <li>
+      <label for="pizza">Pizza</label>
+      <input type="radio" id="pizza" name="meal" value="pizza">
+    </li>
+  </ul>
+</fieldset>
+<button type="reset">
+  This a <br><strong>reset button</strong>
+</button>
+
+<input type="reset" value="This is a reset button">
+<label for="beans">How many beans can you eat?</label>
+<input type="range" name="beans" id="beans" min="0" max="500" step="10">
+<span class="beancount"></span>
+
+<input type="time" name="time" id="time" value="23:34">
+
+<label for="myDate">When are you available this summer?</label>
+<input type="date" name="myDate" min="2012-06-01" max="2013-08-31" id="myDate">
+
+<input type="file" name="file" id="file" accept="image/*" multiple>
+
+<progress max="100" value="75">75/100</progress>
+
+<meter min="0" max="100" value="75" low="33" high="66" optimum="50">75</meter>
+
+<div id="current_date_time_block2"></div>
+
+<script>
+  var beans = document.querySelector('#beans');
+var count = document.querySelector('.beancount');
+
+count.textContent = beans.value;
+
+beans.oninput = function() {
+  count.textContent = beans.value;
+}
+</script>
+<script type="text/javascript">
+function zero_first_format(value)
+    {
+        if (value < 10)
+        {
+            value='0'+value;
+        }
+        return value;
+    }
+
+    /* функция получения текущей даты и времени */
+    function date_time()
+    {
+        var current_datetime = new Date();
+        var day = zero_first_format(current_datetime.getDate());
+        var month = zero_first_format(current_datetime.getMonth()+1);
+        var year = current_datetime.getFullYear();
+        var hours = zero_first_format(current_datetime.getHours());
+        var minutes = zero_first_format(current_datetime.getMinutes());
+        var seconds = zero_first_format(current_datetime.getSeconds());
+
+        return day+"."+month+"."+year+" "+hours+":"+minutes+":"+seconds;
+    }
+  /* каждую секунду получаем текущую дату и время */
+  /* и вставляем значение в блок с id "current_date_time_block2" */
+  setInterval(function () {
+      document.getElementById('current_date_time_block2').innerHTML = date_time();
+  }, 1000);
+</script>
+</body>
 </html>

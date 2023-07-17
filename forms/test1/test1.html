@@ -11,7 +11,16 @@
         padding: 1em;
         margin: 0;
       }
+      input:invalid {
+        border: 2px dashed red;
+      }
 
+      input:valid {
+        border: 2px solid black;
+      }
+      input:invalid:required {
+        background-image: linear-gradient(to right, pink, lightgreen);
+      }
       * {
         box-sizing: border-box;
       }
@@ -25,7 +34,7 @@
         <legend>Personal details</legend>
         <p>
           <label for="name">Name:</label>
-          <input type="text" id="name" name="name" />
+          <input type="text" id="name" name="name" autofocus />
         </p>
         <p>
           <label for="age">Age:</label>
@@ -43,6 +52,40 @@
           <input type="email" id="email" name="email" />
         </p>
       </fieldset>
+    </form>
+    <!-- <form action="http://foo.com" method="get"> -->
+    <form action="http://foo.com" method="post">
+      <div>
+        <label for="say">What greeting do you want to say?</label>
+        <input name="say" id="say" value="Hi" />
+      </div>
+      <div>
+        <label for="to">Who do you want to say it to?</label>
+        <input name="to" id="to" value="Mom" />
+      </div>
+      <div>
+        <button>Send my greetings</button>
+      </div>
+    </form>
+
+    <form method="post" action="php-example.php">
+      <div>
+        <label for="say">What greeting do you want to say?</label>
+        <input name="say" id="say" value="Hi" />
+      </div>
+      <div>
+        <label for="to">Who do you want to say it to?</label>
+        <input name="to" value="Mom" />
+      </div>
+      <div>
+        <button>Send my greetings</button>
+      </div>
+    </form>
+
+    <form>
+      <label for="choose">Would you prefer a banana or cherry?</label>
+      <input id="choose" name="i_like" required />
+      <button>Submit</button>
     </form>
   </body>
 </html>
