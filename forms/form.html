@@ -34,5 +34,44 @@
       <li><a href="http://nodejs.org">http://nodejs.org</a></li>
       <li><a href="http://internal.com/test">http://internal.com/test</a></li>
     </ul>
+
+    <form action="/my-handling-form-page" method="post">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name">
+      </div>
+
+      <div>
+        <label for="mail">E-mail:</label>
+        <input type="email" id="mail" name="user_email">
+      </div>
+
+      <div>
+        <label for="msg">Message:</label>
+        <textarea id="msg" name="user_message"></textarea>
+      </div>
+
+      <div class="button">
+        <button type="submit">Send your message</button>
+      </div>
+    </form>
+
+    <form>
+      <fieldset>
+        <legend>Fruit juice size</legend>
+        <p>
+          <input type="radio" name="size" id="size_1" value="small">
+          <label for="size_1">Small</label>
+        </p>
+        <p>
+          <input type="radio" name="size" id="size_2" value="medium">
+          <label for="size_2">Medium</label>
+        </p>
+        <p>
+          <input type="radio" name="size" id="size_3" value="large">
+          <label for="size_3">Large</label>
+        </p>
+      </fieldset>
+    </form>
   </body>
 </html>
