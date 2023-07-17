@@ -1,0 +1,15 @@
+form{
+width: 400px;
+margin: 0 auto;
+padding: 10px;
+border: 1px solid black;
+border-radius: 5px;
+}
+p{
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+input{
+  border: 1px solid gray;
+}
