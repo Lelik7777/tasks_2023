@@ -7,8 +7,11 @@
 // 2     [7, 8, 9] ]
 //
 
+const matrixArr = [[1, 2, 3],[4, 5, 6],[7, 8, 9]];
+console.log(matrixArr[1][2]);
+
 function logEachMatrixItem(matrix) {
-  console.log('\nLog each matrix item:');
+  console.log("\nLog each matrix item:");
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
@@ -18,15 +21,16 @@ function logEachMatrixItem(matrix) {
 }
 
 function showMatrix(matrix) {
-  console.log('\nShow matrix:');
-
+  console.log("\nShow matrix:");
+console.log(matrix.length);
   for (let i = 0; i < matrix.length; i++) {
-    console.log( matrix[i].join(' ') );
+    //console.log(matrix[i].join(" "));
+    console.log(matrix[i].join(' '));
   }
 }
 
 function showSumByRow(matrix) {
-  console.log('\nShow sum by row:');
+  console.log("\nShow sum by row:");
 
   let sumResults = [];
   let sum;
@@ -41,13 +45,13 @@ function showSumByRow(matrix) {
     sumResults.push(sum);
   }
 
-  console.log('  result -', sumResults);
+  console.log("  result -", sumResults);
 }
 
 function findColumnsWithZero(matrix) {
   // consider that we have matrix with some data
 
-  console.log('\nFind columns with 0:');
+  console.log("\nFind columns with 0:");
 
   let columnsWithZeroIdx = [];
 
@@ -62,43 +66,41 @@ function findColumnsWithZero(matrix) {
     }
   }
 
-  console.log('  result indexes -', columnsWithZeroIdx);
+  console.log("  result indexes -", columnsWithZeroIdx);
 }
 
 function snakeBypass(matrix) {
-  console.log('\nSnake bypass:');
+  console.log("\nSnake bypass:");
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
-      let columnIdx = i % 2 === 0
-        ? j
-        : (matrix[i].length - j - 1);
+      let columnIdx = i % 2 === 0 ? j : matrix[i].length - j - 1;
 
-      console.log( matrix[i][columnIdx] );
+      console.log(matrix[i][columnIdx]);
     }
   }
 }
 
 function logMainDiag(matrix) {
-  console.log('\nMain diag:');
+  console.log("\nMain diag:");
 
   for (let i = 0; i < matrix.length; i++) {
-    console.log( matrix[i][i] );
+    console.log(matrix[i][i]);
   }
 }
 
 function logSideDiag(matrix) {
-  console.log('\nSide diag:');
+  console.log("\nSide diag:");
 
   let n = matrix.length;
 
   for (let i = 0; i < n; i++) {
-    console.log( matrix[i][n - i - 1] );
+    console.log(matrix[i][n - i - 1]);
   }
 }
 
 function showBottomMainTriangle(matrix) {
-  console.log('\nBottom main triangle:');
+  console.log("\nBottom main triangle:");
 
   let row;
 
@@ -107,14 +109,14 @@ function showBottomMainTriangle(matrix) {
 
     for (let j = 0; j <= i; j++) {
       // action
-      row.push( matrix[i][j] );
+      row.push(matrix[i][j]);
     }
 
-    console.log( row.join(' ') );
+    console.log(row.join(" "));
   }
 }
 
-console.log('s01e03 - Matrix\n');
+console.log("s01e03 - Matrix\n");
 
 let matrix = [
   [1, 2, 3, 4],
@@ -123,10 +125,10 @@ let matrix = [
   [6, 8, 0, 2],
 ];
 
- logEachMatrixItem(matrix);
-// showMatrix(matrix);
+logEachMatrixItem(matrix);
+ showMatrix(matrix);
 
-// showSumByRow(matrix);
+ showSumByRow(matrix);
 
 // findColumnsWithZero(matrix);
 
