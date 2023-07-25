@@ -132,4 +132,14 @@ console.log(map.get("from"));
 console.log(map.has("to"));
 console.log(Object.entries(obj1));
 
+const arr = ["abc", "defgh", "ijklmn"];
+function cutIt(arr) {
+  //coding here...
+  let min = Math.min(...arr.map(el=>el.length))
 
+
+
+  return arr.map((el) => el.slice(0, min));
+}
+console.log(cutIt(arr));
+console.log(cutIt(["codewars","javascript","java"]));
