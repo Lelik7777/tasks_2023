@@ -9,13 +9,14 @@
 
 const matrixArr = [[1, 2, 3],[4, 5, 6],[7, 8, 9]];
 console.log(matrixArr[1][2]);
-
+console.log(matrixArr[0]);
 function logEachMatrixItem(matrix) {
   console.log("\nLog each matrix item:");
 
   for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
-      console.log(`  item {${i}, ${j}} - ${matrix[i][j]}`);
+      //console.log(`  item {${i}, ${j}} - ${matrix[i][j]}`);
+      console.log(matrix[j][i]);
     }
   }
 }

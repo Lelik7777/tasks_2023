@@ -143,3 +143,20 @@ function cutIt(arr) {
 }
 console.log(cutIt(arr));
 console.log(cutIt(["codewars","javascript","java"]));
+
+function firstToLast(str,c){
+  //coding here..
+  //debugger
+  if(str.indexOf(c)===-1)return str.indexOf(c);
+  if([...str].filter(el=>el===c).length===1) return 0;
+  else{
+    return str.lastIndexOf(c)-str.indexOf(c);
+  }
+}
+console.log(firstToLast('ababc','a'));
+
+function splitAndMerge(string, separator) {
+  return string.split(' ').map(string=>string.split('').join(separator)).join(' ');
+}
+console.log(splitAndMerge("My name is John","-"));
+console.log(splitAndMerge("My name is John"," "));
