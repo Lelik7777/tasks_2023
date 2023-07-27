@@ -135,28 +135,58 @@ console.log(Object.entries(obj1));
 const arr = ["abc", "defgh", "ijklmn"];
 function cutIt(arr) {
   //coding here...
-  let min = Math.min(...arr.map(el=>el.length))
-
-
+  let min = Math.min(...arr.map((el) => el.length));
 
   return arr.map((el) => el.slice(0, min));
 }
 console.log(cutIt(arr));
-console.log(cutIt(["codewars","javascript","java"]));
+console.log(cutIt(["codewars", "javascript", "java"]));
 
-function firstToLast(str,c){
+function firstToLast(str, c) {
   //coding here..
   //debugger
-  if(str.indexOf(c)===-1)return str.indexOf(c);
-  if([...str].filter(el=>el===c).length===1) return 0;
-  else{
-    return str.lastIndexOf(c)-str.indexOf(c);
+  if (str.indexOf(c) === -1) return str.indexOf(c);
+  if ([...str].filter((el) => el === c).length === 1) return 0;
+  else {
+    return str.lastIndexOf(c) - str.indexOf(c);
   }
 }
-console.log(firstToLast('ababc','a'));
+console.log(firstToLast("ababc", "a"));
 
 function splitAndMerge(string, separator) {
-  return string.split(' ').map(string=>string.split('').join(separator)).join(' ');
+  return string
+    .split(" ")
+    .map((string) => string.split("").join(separator))
+    .join(" ");
 }
-console.log(splitAndMerge("My name is John","-"));
-console.log(splitAndMerge("My name is John"," "));
+console.log(splitAndMerge("My name is John", "-"));
+console.log(splitAndMerge("My name is John", " "));
+
+function alienLanguage(str) {
+  //coding here...
+  return str
+    .split(" ")
+    .map((subStr) =>
+      subStr
+        .split("")
+        .map((char, i, arr) =>
+          i === arr.length - 1 ? char : char.toUpperCase()
+        )
+        .join("")
+    )
+    .join(" ");
+}
+console.log(alienLanguage("my name is john"));
+console.log(alienLanguage("this is an example"));
+const arr444 = [3, 4, 5];
+console.log(arr444.lastIndexOf());
+console.log(arr444.slice(-1));
+console.log(arr444.slice(0, -1));
+
+const change = (str) =>
+  str.replace(/\w+/g,(x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
+  );
+console.log(change("hello world"));
+console.log("hello".slice(-1));
+console.log("hello".slice(0, -1));
+console.log('hello'.replace(/.\b/g,'*'));
