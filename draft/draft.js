@@ -184,9 +184,116 @@ console.log(arr444.slice(-1));
 console.log(arr444.slice(0, -1));
 
 const change = (str) =>
-  str.replace(/\w+/g,(x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
+  str.replace(
+    /\w+/g,
+    (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
   );
 console.log(change("hello world"));
 console.log("hello".slice(-1));
 console.log("hello".slice(0, -1));
-console.log('hello'.replace(/.\b/g,'*'));
+console.log("hello".replace(/.\b/g, "*"));
+
+function topSecret(str) {
+  let dict = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+  let Dict = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+  return str.replace(/[a-z]gi/, (x) => {
+    if (x === x.toLowerCase()) {
+      return dict.indexOf(x);
+    }
+    return dict.indexOf(x);
+  });
+}
+topSecret("Pb qdph lv Mrkq");
+//console.log(topSecret("Pb qdph lv Mrkq"));
+
+function fiveLine(s) {
+  //coding here...
+  const char = s.trim();
+  return `${char}\n${char.repeat(2)}\n${char.repeat(3)}\n${char.repeat(
+    4
+  )}\n${char.repeat(5)}`;
+}
+console.log(fiveLine("  a"));
+
+const fiveLines2 = (s) => {
+  const arr = [];
+  for (let i = 1; i <= 5; i++) {
+    arr.push(s.repeat(i));
+  }
+  return arr.join("\n");
+};
+console.log(fiveLines2("b"));
+let [z, y] = [2, 5];
+console.log(z, y);
+[z, y] = [y, z];
+console.log(z, y);
+
+function shuffleIt(arr, ...arrs) {
+  //coding here...
+  console.log(arr);
+  console.log(arrs);
+  console.log(arrs.length);
+  for (let array of arrs) {
+    //arr[(array[0], array[1])] = arr[(array[1], array[0])];
+   let temp=arr[array[0]];
+   arr[array[0]]=arr[array[1]];
+   arr[array[1]]=temp;
+  }
+
+  console.log(arr);
+}
+shuffleIt([1, 2, 3, 4,5], [1, 2],[3,4]);
