@@ -282,18 +282,34 @@ console.log(z, y);
 [z, y] = [y, z];
 console.log(z, y);
 
-function shuffleIt(arr, ...arrs) {
-  //coding here...
-  console.log(arr);
-  console.log(arrs);
-  console.log(arrs.length);
-  for (let array of arrs) {
-    //arr[(array[0], array[1])] = arr[(array[1], array[0])];
-   let temp=arr[array[0]];
-   arr[array[0]]=arr[array[1]];
-   arr[array[1]]=temp;
-  }
+// function shuffleIt(arr, ...arrs) {
+//   //coding here...
+//   console.log(arr);
+//   console.log(arrs);
+//   console.log(arrs.length);
+//   for (let array of arrs) {
+//     //arr[(array[0], array[1])] = arr[(array[1], array[0])];
+//    let temp=arr[array[0]];
+//    arr[array[0]]=arr[array[1]];
+//    arr[array[1]]=temp;
+//   }
 
-  console.log(arr);
+//   return arr
+// }
+const shuffleIt = (arr, ...arrs) => {
+  arrs.forEach(([a, b]) => ([arr[a], arr[b]] = [arr[b], arr[a]]));
+  return arr;
+};
+
+console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2], [3, 4]));
+
+function infiniteLoop(arr,d,n){
+  //coding here...
+if(d==='right'){
+  for(let array of arr){
+    array=array.map(el=>{
+      return el+n;
+    })
+  }
 }
-shuffleIt([1, 2, 3, 4,5], [1, 2],[3,4]);
+}
