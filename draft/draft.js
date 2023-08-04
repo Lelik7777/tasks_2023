@@ -303,13 +303,77 @@ const shuffleIt = (arr, ...arrs) => {
 
 console.log(shuffleIt([1, 2, 3, 4, 5], [1, 2], [3, 4]));
 
-function infiniteLoop(arr,d,n){
+function infiniteLoop(arr, d, n) {
   //coding here...
-if(d==='right'){
-  for(let array of arr){
-    array=array.map(el=>{
-      return el+n;
-    })
+  if (d === "left") {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].map((el) => {
+        return el < 9 ? el + n : el + (n % 10);
+      });
+    }
   }
+  if (d === "right") {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].map((el) => {
+        return el > 1 ? el - n : 9;
+      });
+    }
+  }
+  return arr;
 }
+console.log(
+  infiniteLoop(
+    [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ],
+    "left",
+    1
+  )
+);
+
+function removeEven(arr) {
+  //remove even number from arr
+  for (var i = arr.length; i >= 0; i--) if (arr[i] % 2 == 0) arr.splice(i, 1);
+  return arr;
 }
+var arr00 = [1, 2, 3, 4, 5];
+removeEven(arr00);
+console.log(arr00);
+
+let matrix = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [0, 3, 6, 9],
+  [6, 8, 0, 2],
+];
+
+const findColumnWithZero = (arr) => {
+  const array = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      if (arr[j][i] === 0) {
+        array.push(i);
+      }
+    }
+  }
+  console.log("array column numbers", array);
+};
+findColumnWithZero(matrix);
+
+const snakeByPass = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 2) {
+      for (let j = arr[i].length-1; j > 0; j--) {
+        console.log(arr[i][j]);
+      }
+    } else {
+      for (let j = 0; j < arr[i].length - 1; j++) {
+        console.log(arr[i][j]);
+      }
+    }
+  }
+
+};
+snakeByPass(matrix);

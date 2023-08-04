@@ -131,7 +131,7 @@ logEachMatrixItem(matrix);
 
  showSumByRow(matrix);
 
-// findColumnsWithZero(matrix);
+ findColumnsWithZero(matrix);
 
 // let smallMatrix = [
 //   [1, 2, 3],
