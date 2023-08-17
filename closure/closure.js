@@ -55,7 +55,6 @@ Counter.decrement();
 
 console.log(Counter.value()); /* Alerts 1 */
 
-
 //
 function showHelp(help) {
   document.getElementById("help").innerHTML = help;
@@ -68,8 +67,8 @@ function setupHelp() {
     { id: "age", help: "Ваш возраст (Вам должно быть больше 16)" },
   ];
 
-  for (var i = 0; i < helpText.length; i++) {
-    var item = helpText[i];
+  for (let i = 0; i < helpText.length; i++) {
+    let item = helpText[i];
     document.getElementById(item.id).onfocus = function () {
       showHelp(item.help);
     };
@@ -78,27 +77,58 @@ function setupHelp() {
 
 setupHelp();
 
-function showHelp(help) {
-  document.getElementById("help").innerHTML = help;
-}
+// function showHelp(help) {
+//   document.getElementById("help").innerHTML = help;
+// }
 
-function makeHelpCallback(help) {
+// function makeHelpCallback(help) {
+//   return function () {
+//     showHelp(help);
+//   };
+// }
+
+// function setupHelp() {
+//   var helpText = [
+//     { id: "email", help: "Ваш адрес e-mail" },
+//     { id: "name", help: "Ваше полное имя" },
+//     { id: "age", help: "Ваш возраст (Вам должно быть больше 16)" },
+//   ];
+
+//   for (var i = 0; i < helpText.length; i++) {
+//     var item = helpText[i];
+//     document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
+//   }
+// }
+
+// setupHelp();
+
+const changeFontSize = (value) => {
   return function () {
-    showHelp(help);
+    document.body.style.fontSize = value + "px";
   };
-}
+};
+const font16 = changeFontSize(16);
+const font18 = changeFontSize(18);
+const button14 = document.getElementById("14px");
+const button15 = document.getElementById("15px");
+button14.addEventListener("click", font16);
+button15.addEventListener("click", font18);
 
-function setupHelp() {
-  var helpText = [
-    { id: "email", help: "Ваш адрес e-mail" },
-    { id: "name", help: "Ваше полное имя" },
-    { id: "age", help: "Ваш возраст (Вам должно быть больше 16)" },
-  ];
-
-  for (var i = 0; i < helpText.length; i++) {
-    var item = helpText[i];
-    document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
-  }
-}
-
-setupHelp();
+const Counter1 = (function name(params) {
+  let innerCounter = 0;
+  const changeCounter = (value) => (innerCounter += value);
+  return {
+    decrement() {
+      changeCounter(-1);
+    },
+    increment() {
+      changeCounter(1);
+    },
+    value() {
+      return innerCounter;
+    },
+  };
+})();
+Counter1.decrement();
+Counter1.decrement();
+console.log(Counter1.value());
