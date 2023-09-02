@@ -132,3 +132,25 @@ const Counter1 = (function name(params) {
 Counter1.decrement();
 Counter1.decrement();
 console.log(Counter1.value());
+
+const CounterMy = (function () {
+  let count = 0;
+  function changeCount(value) {
+    count += value;
+  }
+  return {
+    inc() {
+      changeCount(1);
+    },
+    dec() {
+      changeCount(-1);
+    },
+    value() {
+      return count;
+    },
+  };
+})();
+
+console.log(CounterMy.inc());
+console.log(CounterMy.inc());
+console.log("my value ", CounterMy.value());
