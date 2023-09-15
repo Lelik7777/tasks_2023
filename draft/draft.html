@@ -11,5 +11,22 @@
   <body>
     <h1>DRAFT</h1>
     <div class="block"></div>
+    <div id="editor1" contenteditable="true"></div>
+    <button id="button1" onclick="CopyToClipboard()">COPY</button>
+    <script>
+
+      function CopyToClipboard() {
+
+          var copyBoxElement = document.getElementById('editor1');
+          copyBoxElement.contenteditable = true;
+          copyBoxElement.focus();
+          document.execCommand('selectAll');
+          document.execCommand("copy");
+          copyBoxElement.contenteditable = false;
+          alert("Text has been copied")
+      }
+
+      </script>
   </body>
+  
 </html>
