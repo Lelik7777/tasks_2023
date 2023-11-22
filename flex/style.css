@@ -56,4 +56,9 @@ body {
 
 .blue {
   background: steelblue;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */
+
+.fixed {
+  position: fixed;
+  top: 0;
+}
