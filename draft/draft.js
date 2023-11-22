@@ -82,16 +82,10 @@ const serializeObj = JSON.stringify(
   2
 );
 console.log(serializeObj);
-console.log(
-  JSON.parse(serializeObj, (key, value) =>
-    key === "date" ? new Date(value) : value
-  ).date.getMonth()
-);
+console.log(JSON.parse(serializeObj, (key, value) => (key === "date" ? new Date(value) : value)).date.getMonth());
 
 //simple shuffle of array
-console.log(
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sort(() => Math.random() - 0.5)
-);
+console.log([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].sort(() => Math.random() - 0.5));
 //Fisher-Jets shuffle of array
 function shuffle(array) {
   for (let i = array.length - 1; i >= 0; i--) {
@@ -102,9 +96,7 @@ function shuffle(array) {
 }
 console.log(shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 
-console.log(
-  Array.from("hello world", (value, i) => (value === " " ? i : value))
-);
+console.log(Array.from("hello world", (value, i) => (value === " " ? i : value)));
 console.log([..."hello world"]);
 
 //todo example with iterator
@@ -117,8 +109,7 @@ obj1[Symbol.iterator] = function () {
     current: this.from,
     last: this.to,
     next() {
-      if (this.current <= this.last)
-        return { done: false, value: this.current++ };
+      if (this.current <= this.last) return { done: false, value: this.current++ };
       else return { done: true };
     },
   };
@@ -169,9 +160,7 @@ function alienLanguage(str) {
     .map((subStr) =>
       subStr
         .split("")
-        .map((char, i, arr) =>
-          i === arr.length - 1 ? char : char.toUpperCase()
-        )
+        .map((char, i, arr) => (i === arr.length - 1 ? char : char.toUpperCase()))
         .join("")
     )
     .join(" ");
@@ -183,11 +172,7 @@ console.log(arr444.lastIndexOf());
 console.log(arr444.slice(-1));
 console.log(arr444.slice(0, -1));
 
-const change = (str) =>
-  str.replace(
-    /\w+/g,
-    (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase()
-  );
+const change = (str) => str.replace(/\w+/g, (x) => x.slice(0, -1).toUpperCase() + x.slice(-1).toLowerCase());
 console.log(change("hello world"));
 console.log("hello".slice(-1));
 console.log("hello".slice(0, -1));
@@ -263,9 +248,7 @@ topSecret("Pb qdph lv Mrkq");
 function fiveLine(s) {
   //coding here...
   const char = s.trim();
-  return `${char}\n${char.repeat(2)}\n${char.repeat(3)}\n${char.repeat(
-    4
-  )}\n${char.repeat(5)}`;
+  return `${char}\n${char.repeat(2)}\n${char.repeat(3)}\n${char.repeat(4)}\n${char.repeat(5)}`;
 }
 console.log(fiveLine("  a"));
 
@@ -365,7 +348,7 @@ findColumnWithZero(matrix);
 const snakeByPass = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     if (i % 2) {
-      for (let j = arr[i].length-1; j > 0; j--) {
+      for (let j = arr[i].length - 1; j > 0; j--) {
         console.log(arr[i][j]);
       }
     } else {
@@ -374,17 +357,16 @@ const snakeByPass = (arr) => {
       }
     }
   }
-
 };
 snakeByPass(matrix);
 
-const text=`Lorem ipsum dolor sit amet consectetur adipisicing elit.
+const text = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
 <br>
  Corporis necessitatibus aspernatur nulla a enim? Quisquam minima iusto,
 <br>
  consequatur accusamus vero deserunt ut, ducimus possimus,<br> explicabo temporibus dolorum sapiente.
 
- Neque, ullam`
+ Neque, ullam`;
 
 //  const block=document.querySelector('.block');
 //  document.body.insertAdjacentHTML('afterbegin',text)
@@ -406,25 +388,72 @@ const text=`Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 class Circle {
   constructor(radius) {
-      this.radius = radius;
+    this.radius = radius;
   }
   set diameter(value) {
-      this.radius = value / 2;
-      console.log('SET ', value);
+    this.radius = value / 2;
+    console.log("SET ", value);
   }
   get diameter() {
-      return this.radius * 2;
+    return this.radius * 2;
   }
 }
 
 let circle = new Circle(100);
 
 let cloneCircle1 = Object.assign(circle, {
-  diameter: 200
+  diameter: 200,
 });
 
 let cloneCircle2 = {
-  ...circle
+  ...circle,
 };
-cloneCircle2.diameter=200;
+cloneCircle2.diameter = 200;
 console.log(cloneCircle2);
+
+const add = (val) =>
+  function (val2) {
+    return val + val2;
+  };
+const add4 = add(4);
+console.log("add4=", add4(6));
+
+const createPerson = (firstName, lastName) => {
+  return {
+    firstName,
+    lastName,
+    getFullName() {
+      return this.firstName + " " + this.lastName;
+    },
+  };
+};
+
+const person1 = createPerson("bob", "martin");
+console.log(typeof person1.firstName);
+console.log(person1.getFullName());
+const obj00 = { name: "alex" };
+function getName() {
+  return this;
+}
+console.log(getName.call(obj00));
+console.log(getName());
+function fun(a) {
+  arguments[0] = 19;
+  return a;
+}
+console.log(fun(5));
+// const foo = bar();
+// const num = 3;
+// function bar() {
+//   return num;
+// }
+function fooo() {
+  console.log(this);
+}
+fooo.call(null);
+for (var i = 0; i < 5; i++) {}
+console.log(i);
+let f = function g() {
+  return 4;
+};
+console.log(typeof g());
