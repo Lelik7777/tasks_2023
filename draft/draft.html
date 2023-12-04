@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="draft.js" defer></script>
   </head>
   <body>
@@ -13,20 +13,20 @@
     <div class="block"></div>
     <div id="editor1" contenteditable="true"></div>
     <button id="button1" onclick="CopyToClipboard()">COPY</button>
+    <picture>
+      <source srcset="./pictures/about-4768.png" media="(max-width:500px)" />
+      <img src="./pictures/about-1768.png" alt="picture" />
+    </picture>
     <script>
-
       function CopyToClipboard() {
-
-          var copyBoxElement = document.getElementById('editor1');
-          copyBoxElement.contenteditable = true;
-          copyBoxElement.focus();
-          document.execCommand('selectAll');
-          document.execCommand("copy");
-          copyBoxElement.contenteditable = false;
-          alert("Text has been copied")
+        var copyBoxElement = document.getElementById("editor1");
+        copyBoxElement.contenteditable = true;
+        copyBoxElement.focus();
+        document.execCommand("selectAll");
+        document.execCommand("copy");
+        copyBoxElement.contenteditable = false;
+        alert("Text has been copied");
       }
-
-      </script>
+    </script>
   </body>
-  
 </html>
