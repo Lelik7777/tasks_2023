@@ -456,4 +456,59 @@ console.log(i);
 let f = function g() {
   return 4;
 };
-console.log(typeof g());
+document.querySelector("#color").addEventListener("input", function (e) {
+  console.log(e.currentTarget.value);
+});
+let commentList = [
+  {
+    id: "#com1",
+    author: { id: "#aut1", name: "John Doe" },
+    text: "Cool!",
+    postId: "#post1",
+  },
+  {
+    id: "#com2",
+    author: { id: "#aut1", name: "John Doe" },
+    text: "Cool!",
+    postId: "#post2",
+  },
+  {
+    id: "#com3",
+    author: { id: "#aut2", name: "Anthony Hopkins" },
+    text: "Nice comment, John! :)",
+    postId: "#post1",
+  },
+  {
+    id: "#com4",
+    author: { id: "#aut1", name: "John Doe" },
+    text: "Thanks!",
+    postId: "#post1",
+  },
+];
+function getAuthorNames1(commentList) {
+  return Array.from(new Set(commentList.map((comment) => comment.author.name)));
+}
+function getAuthorNames(commentList) {
+  const names = commentList.map((comment) => comment.author.name);
+  return names;
+}
+console.log(getAuthorNames(commentList));
+
+console.log(["a", "b", "c", "a", "b", "d"].filter((el, i, arr) => arr.findIndex((item) => item === el) === i));
+
+function getAuthorsStatistics(arr) {
+  let names = arr.map((comment) => comment.author.id);
+  console.log(names);
+  return names.reduce((acc, cur) => ({ ...acc, [cur]: acc[cur] ? acc[cur] + 1 : 1 }), {});
+}
+console.log(getAuthorsStatistics(commentList));
+
+const numbers11 = [1, 3, 44, 0, 2, 3, 1, 34, 5, 24];
+for (let i = 0; i < numbers11.length - 1; i++) {
+  for (let j = 0; j < numbers11.length - 1 - i; j++) {
+    if (numbers11[j + 1] < numbers11[j]) {
+      [numbers11[j], numbers11[j + 1]] = [numbers11[j + 1], numbers11[j]];
+    }
+  }
+}
+console.log(numbers11);

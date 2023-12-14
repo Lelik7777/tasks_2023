@@ -7,7 +7,11 @@
 // 2     [7, 8, 9] ]
 //
 
-const matrixArr = [[1, 2, 3],[4, 5, 6],[7, 8, 9]];
+const matrixArr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 console.log(matrixArr[1][2]);
 console.log(matrixArr[0]);
 function logEachMatrixItem(matrix) {
@@ -23,10 +27,10 @@ function logEachMatrixItem(matrix) {
 
 function showMatrix(matrix) {
   console.log("\nShow matrix:");
-console.log(matrix.length);
+  console.log(matrix.length);
   for (let i = 0; i < matrix.length; i++) {
     //console.log(matrix[i].join(" "));
-    console.log(matrix[i].join(' '));
+    console.log(matrix[i].join(" "));
   }
 }
 
@@ -127,17 +131,17 @@ let matrix = [
 ];
 
 logEachMatrixItem(matrix);
- showMatrix(matrix);
+showMatrix(matrix);
 
- showSumByRow(matrix);
+showSumByRow(matrix);
 
- findColumnsWithZero(matrix);
+findColumnsWithZero(matrix);
 
-// let smallMatrix = [
-//   [1, 2, 3],
-//   [4, 5, 6],
-//   [7, 8, 9],
-// ];
+let smallMatrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 // showMatrix(smallMatrix);
 // snakeBypass(smallMatrix);
 
@@ -146,3 +150,60 @@ logEachMatrixItem(matrix);
 
 // showMatrix(matrix);
 // showBottomMainTriangle(matrix);
+
+console.log(matrix.map((arr) => arr.reduce((a, c) => a + c, 0)));
+
+function sumColums(matrix) {
+  const arr = [];
+  let sum = 0;
+  for (let i = 0; i < matrix[0].length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      sum += matrix[j][i];
+    }
+    arr.push(sum);
+    sum = 0;
+  }
+  return arr;
+}
+console.log(sumColums(matrix));
+
+function snakeShow(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    if (i % 2 === 0 || i === 0) {
+      console.log(matrix[i].join(" "));
+    } else {
+      console.log(matrix[i].reverse().join(" "));
+    }
+  }
+}
+snakeShow(smallMatrix);
+
+function diagMain(matrix) {
+  for (let i = 0; i < matrix[0].length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (i === j) {
+        console.log(matrix[j][i]);
+      }
+    }
+  }
+}
+diagMain(matrix);
+console.log("--------");
+function diagSid(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    console.log(matrix[i][matrix.length - 1 - i]);
+  }
+}
+diagSid(matrix);
+console.log("-------------");
+function leftTriangle(matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    let arr = [];
+    for (let j = 0; j <= i; j++) {
+      arr.push(matrix[i][j]);
+    }
+    console.log(arr.join(" "));
+    //arr = [];
+  }
+}
+leftTriangle(matrix);
