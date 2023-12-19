@@ -111,6 +111,19 @@ class BinarySearchTree {
       }
     }
   }
+  find(data) {
+    return searchNode(this.root, data);
+
+    function searchNode(node, value) {
+      if (!node) {
+        return null;
+      }
+      if (value === node.value) {
+        return node;
+      }
+      return value < node.value ? searchNode(node.left, value) : searchNode(node.right, value);
+    }
+  }
   rightTraverse(cb) {
     doRightTraverse(this.root, cb);
 
@@ -140,3 +153,4 @@ console.log("min value", bst.min());
 console.log("max value", bst.max());
 console.log(bst.leftTraverse((val) => console.log(val)));
 console.log(bst.rightTraverse((val) => console.log(val)));
+console.log(bst.find(25));
