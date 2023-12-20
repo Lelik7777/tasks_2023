@@ -27,3 +27,7 @@ btns.forEach((btn) => {
     }
   });
 });
+console.log("hello");
+console.log("heol");
+const a = 10 + 10;
+a;

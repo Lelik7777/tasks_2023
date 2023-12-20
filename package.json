@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "style":"sass ./positions/style.scss ./positions/style.css"
+    "style": "sass ./positions/style.scss ./positions/style.css"
   },
   "author": "lelik",
   "license": "ISC"
+
 }
