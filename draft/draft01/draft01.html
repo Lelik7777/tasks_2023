@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./draft01.css" />
     <title>Document</title>
   </head>
   <body>
@@ -13,7 +14,7 @@
       expedita facilis, qui ipsum et quod adipisci odit. Maxime?
     </p>
 
-    <a href="#" class="button" id="size12">12</a>
+    <a href="#" class="button" id="size12" data-href="#urlr">12</a>
     <a href="#" class="button" id="size14">14</a>
     <a href="#" class="button" id="size16">16</a>
     <br />
@@ -29,6 +30,18 @@ for (const item of object) {
     <br />
     <mark>marked text</mark>
     <a href="./draft.docx" download>download book</a>
+    <form action="">
+      <fieldset>
+        <input type="password" name="password" id="password" disabled />
+        <input type="date" name="date" id="date" />
+        <input type="email" name="email" id="email" placeholder="enter email" />
+        <input type="text" name="fruit" id="fruit" required pattern="[Bb]anana|[Cc]herry" />
+        <input type="text" name="simple-text" id="simple-text" />
+        <button type="button">button</button>
+        <button type="submit">submit</button>
+        <textarea required name="" id="" maxlength="10" cols="30" rows="10"></textarea>
+      </fieldset>
+    </form>
     <script src="./draft01.js"></script>
   </body>
 </html>

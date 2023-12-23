@@ -1,5 +1,5 @@
-const axios = require("axios");
-console.log(axios);
+//const axios = require("axios");
+//console.log(axios);
 
 const user = { name: "bob", age: 34 };
 const copyUser = { ...user };
