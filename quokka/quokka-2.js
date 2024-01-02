@@ -1,10 +1,20 @@
-function range(start, end) {
-  if (end - start === 2) {
-    return [start + 1];
-  } else {
-    const arr = range(start, end - 1);
-    arr.push(end - 1);
-    return arr;
-  }
-}
-range(3, 7); //?
+"hello".match(/.{1,2}/g); //?
+let data = {
+  Рыбы: {
+    форель: {},
+    лосось: {},
+  },
+
+  Деревья: {
+    Огромные: {
+      секвойя: {},
+      дуб: {},
+    },
+    Цветковые: {
+      яблоня: {},
+      магнолия: {},
+    },
+  },
+};
+
+console.log(Array.from({ length: 3 }, (_, i) => i));
