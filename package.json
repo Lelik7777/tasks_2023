@@ -8,6 +8,14 @@
     "style": "sass ./positions/style.scss ./positions/style.css"
   },
   "author": "lelik",
-  "license": "ISC"
-
+  "license": "ISC",
+  "dependencies": {
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "prettier": "^3.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb": "^19.0.4"
+  }
 }
