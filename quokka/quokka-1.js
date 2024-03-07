@@ -1,7 +1,7 @@
 //const axios = require("axios");
 //console.log(axios);
 
-const user = { name: "bob", age: 34 };
+export const user = { name: "bob", age: 34 };
 const copyUser = { ...user };
 console.log("");
 
@@ -34,8 +34,8 @@ function loop(iter) {
 loop(100); //?
 console.log(loop(10000)); //?
 [1, 3, 4, 5, 6, 7, 8]
-  .filter((item) => item % 2) //?
-  .map((i) => (i > 3 ? i : 0)); //?
+  .filter(item => item % 2) //?
+  .map(i => (i > 3 ? i : 0)); //?
 
 if (!content) {
   //?

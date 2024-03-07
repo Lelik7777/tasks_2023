@@ -1,6 +1,6 @@
-const content = document.querySelector(".content");
-const dateInput = document.querySelector("#date");
-
-dateInput.addEventListener("input", function () {
-  console.log(``, new Date(this.valueAsNumber));
+const request = new XMLHttpRequest();
+request.open("https://jsonplaceholder.typicode.com/todos/1");
+request.send();
+request.addEventListener("load", function () {
+  console.log(JSON.parse(this.responseText));
 });
