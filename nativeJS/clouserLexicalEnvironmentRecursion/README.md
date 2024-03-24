@@ -1,0 +1,4 @@
+- lexical environment
+- closure
+- recursion
+-

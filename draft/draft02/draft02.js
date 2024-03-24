@@ -1,6 +1,10 @@
-const request = new XMLHttpRequest();
-request.open("https://jsonplaceholder.typicode.com/todos/1");
-request.send();
-request.addEventListener("load", function () {
-  console.log(JSON.parse(this.responseText));
-});
+const getData = url => {
+  return new Promise((resolve, reject) => {
+    fetch(url)
+      .then(res => resolve(res.json()))
+      .catch(err => reject(err));
+  });
+};
+getData("https://jsonplaceholder.typicod.com/posts/1")
+  .then(res => console.log(res))
+  .catch(err => console.log(err));
