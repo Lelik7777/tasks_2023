@@ -20,7 +20,7 @@ const button = {
     doubleClick: [],
     onFocus: [],
   },
-
+  // на вызов этого метода вызываются все функции, которые подписанны на данное событие(клик)
   click() {
     this.subscribers["click"].forEach(subscriber => subscriber());
   },
@@ -32,7 +32,7 @@ const button = {
   onFocus() {
     this.subscribers["onFocus"].forEach(subscriber => subscriber());
   },
-  // метод, с помощью которого мы подписываемся на события
+  // метод, с помощью которого мы подписываемся на события и пушим функцию,которая подписывается на то или иное событие
   addEventListener(eventName, subscriber) {
     this.subscribers[eventName].push(subscriber);
   },
